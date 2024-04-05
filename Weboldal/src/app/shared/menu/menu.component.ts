@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './menu.component.sass'
 })
 export class MenuComponent {
+  @Input() aholVagyunk: string = '';
+  @Output() selected: EventEmitter<string> = new EventEmitter;
+  menuMagic(){
+    this.selected.emit(this.aholVagyunk);
+  }
 
 }

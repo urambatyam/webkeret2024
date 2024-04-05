@@ -1,1 +1,7 @@
-<p>menu works!</p>
+<select [(ngModel)]="aholVagyunk" (change)="menuMagic()">
+    <option value="main" >Home</option>
+    <option value="login" >Belépés</option>
+    <option value="regist" >Regisztráció</option>
+    <option value="doctor" >Doktor</option>
+    <option value="patient" >Páciens</option>
+</select>
