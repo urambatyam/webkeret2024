@@ -1,1 +1,34 @@
-<p>regist works!</p>
+<div>
+    <h1>Regisztráció</h1>
+    <form [formGroup]="regForm" (ngSubmit)="registral()">
+        <div formGroupName="nev">
+            <div>
+                <label for="veznev">Vezetéknév: </label><input type="text" formControlName="veznev"/>
+            </div>
+            <div>
+                <label for="kernev">Keresztnév: </label><input type="text" formControlName="kernev"/>
+            </div>
+        </div>
+        <div>
+            <label for="email">Email: </label><input type="text" formControlName="email"/>
+        </div>
+        <div>
+            <label for="jelszo">Jelszó: </label><input type="password" formControlName="jelszo"/>
+        </div>
+        <div>
+            <label for="rejelszo">Jelszó újra: </label><input type="password" formControlName="rejelszo"/>  
+        </div>
+        <div>
+            <label for="tab">TAB: </label><input type="text" formControlName="tab"/>
+        </div>
+        <div>
+            <p>Ön orvos?</p>
+            <span><label for="igen">Igen </label><input type="radio" name="szerep" id="igen" value="igen" formControlName="szerep"></span>
+            <span><label for="nem">Nem </label><input type="radio" name="szerep" id="nem" value="nem" formControlName="szerep"></span>
+        </div>
+        <div>
+            <button type="submit">Regisztrál</button>
+            <button (click)="vissza()">Vissza</button>
+        </div>
+    </form>
+</div>
