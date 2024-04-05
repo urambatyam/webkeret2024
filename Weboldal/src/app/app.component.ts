@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'my-second-project3';
+  title = 'Orvosi vérnyomásmérő oldal';
 }
