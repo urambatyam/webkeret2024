@@ -1,0 +1,27 @@
+<div>
+    <form [formGroup]="UzenetForm" (ngSubmit)="onAdd()">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Orvosi tanács</th>
+            <th>Dátum</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let uzenet of uzenetek">
+            <td>{{ uzenet.text }}</td>
+            <td>{{ uzenet.date }}</td>
+            <td>
+              <button (click)="onDelete(uzenet)">Törlés</button>
+            </td>
+          </tr>
+          <tr>
+            <td><textarea formControlName="text" id="" cols="30" rows="10"></textarea></td>
+            <td colspan="2"><button type="submit">Hozzáadás</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  

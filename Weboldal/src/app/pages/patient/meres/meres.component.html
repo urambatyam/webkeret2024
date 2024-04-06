@@ -1,0 +1,30 @@
+<div>
+    <form [formGroup]="TableForm" (ngSubmit)="onAdd()">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Disztoles</th>
+            <th>Szisztoles</th>
+            <th>Dátum</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let patient of patients">
+            <td>{{ patient.disztoles }}</td>
+            <td>{{ patient.szisztoles }}</td>
+            <td>{{ patient.date }}</td>
+            <td>
+              <button (click)="onDelete(patient)">Törlés</button>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="number" formControlName="disztoles" /></td>
+            <td><input type="number" formControlName="szisztoles" /></td>
+            <td colspan="2"><button type="submit">Hozzáadás</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  

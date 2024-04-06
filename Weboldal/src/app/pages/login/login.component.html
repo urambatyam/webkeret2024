@@ -1,7 +1,7 @@
-<div>
+<div class="container">
     <h1>Bejelentkezés</h1>
-    <span><label for="email">Email: </label><input type="text" [formControl]="email" /></span>
-    <span><label for="jelszo">Jelszó: </label><input type="password" [formControl]="jelszo"/></span>
+    <span><label for="email">Email: </label><input type="text" [formControl]="email" /></span><br>
+    <span><label for="jelszo">Jelszó: </label><input type="password" [formControl]="jelszo"/></span><br>
     <span>
         <button (click)="login()">Belépés</button>
         <button [routerLink]="'/regist'">Regisztráció</button>

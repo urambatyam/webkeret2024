@@ -1,12 +1,12 @@
-<div>
+<div class="container">
     <h1>Regisztráció</h1>
     <form [formGroup]="regForm" (ngSubmit)="registral()">
-        <div formGroupName="nev">
+        <div >
             <div>
-                <label for="veznev">Vezetéknév: </label><input type="text" formControlName="veznev"/>
+                <label for="veznev">Vezetéknév: </label><input type="text"  formControlName="veznev"/>
             </div>
             <div>
-                <label for="kernev">Keresztnév: </label><input type="text" formControlName="kernev"/>
+                <label for="kernev">Keresztnév: </label><input type="text"  formControlName="kernev"/>
             </div>
         </div>
         <div>
@@ -19,12 +19,12 @@
             <label for="rejelszo">Jelszó újra: </label><input type="password" formControlName="rejelszo"/>  
         </div>
         <div>
-            <label for="tab">TAB: </label><input type="text" formControlName="tab"/>
+            <label for="tab">TAB: </label><input type="number" formControlName="tab"/>
         </div>
         <div>
             <p>Ön orvos?</p>
-            <span><label for="igen">Igen </label><input type="radio" name="szerep" id="igen" value="igen" formControlName="szerep"></span>
-            <span><label for="nem">Nem </label><input type="radio" name="szerep" id="nem" value="nem" formControlName="szerep"></span>
+            <span><label for="igen">Igen </label><input type="radio" name="orvos" id="igen" value="true" formControlName="orvos"></span>
+            <span><label for="nem">Nem </label><input type="radio" name="orvos" id="nem" value="false" formControlName="orvos"></span>
         </div>
         <div>
             <button type="submit">Regisztrál</button>

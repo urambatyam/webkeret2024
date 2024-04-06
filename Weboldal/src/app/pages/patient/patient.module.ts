@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { PatientRoutingModule } from './patient-routing.module';
 import { PatientComponent } from './patient.component';
+import { MeresComponent } from './meres/meres.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UzenetComponent } from './uzenet/uzenet.component';
 
 
 @NgModule({
   declarations: [
-    PatientComponent
+    PatientComponent,
+    MeresComponent,
+    UzenetComponent
   ],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     PatientRoutingModule
   ]
