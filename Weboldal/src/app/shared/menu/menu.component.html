@@ -1,7 +1,23 @@
-<select [(ngModel)]="aholVagyunk" (change)="menuMagic()">
-    <option value="main" >Home</option>
-    <option value="login" >Belépés</option>
-    <option value="regist" >Regisztráció</option>
-    <option value="doctor" >Doktor</option>
-    <option value="patient" >Páciens</option>
-</select>
+<mat-nav-list>
+    <a mat-list-item routerLink="/main" (click)="close()">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+    </a>
+    <a mat-list-item routerLink="/login" (click)="close()">
+        <mat-icon>login</mat-icon>
+        <span>Belépés</span>
+    </a>
+    <a mat-list-item routerLink="/regist" (click)="close()">
+        <mat-icon>app_registration</mat-icon>
+        <span>Regisztráció</span> 
+    </a>
+    <a mat-list-item routerLink="/patient" (click)="close()">
+        <mat-icon>bloodtype</mat-icon>
+        <span>Tanácsadás</span>
+    </a>
+    <a mat-list-item routerLink="/doctor" (click)="close()">
+        <mat-icon>description</mat-icon>
+        <span>Beteglap</span>
+    </a>
+</mat-nav-list>
+

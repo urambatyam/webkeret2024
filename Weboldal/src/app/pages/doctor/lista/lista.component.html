@@ -1,0 +1,41 @@
+<div>
+    <table>
+        <thead>
+            <tr class="edge">
+                <th>TAB</th>
+                <th>részletek</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tab of tabs;">
+                <td>{{tab.tab}}</td>
+                <td>
+                    <button (click)="reszletek(tab.tab)">gomb</button>
+                </td>
+            </tr>
+            <tr *ngIf="gomb">
+                <table>
+                    <tr class="edge">
+                        <th>szitoles</th>
+                        <th>disztoles</th>
+                        <th>dátum</th>
+                    </tr>
+                    <tr *ngFor="let meres of meresek;">
+                        <td>{{meres.szisztoles}}</td>
+                        <td>{{meres.disztoles}}</td>
+                        <td>{{meres.date | cso}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>Üzenetírása</button>
+                        </td>
+                        <td>
+                            <button (click)="bezar()" >Bezár</button>
+                        </td>
+                    </tr>
+                </table>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

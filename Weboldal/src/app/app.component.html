@@ -1,2 +1,26 @@
-<app-menu (selected)="nav($event)" [aholVagyunk]="page" ></app-menu>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <app-menu (selected)="nav($event)" [aholVagyunk]="page" *ngIf="page" (onCloseSidenav)="onClose($event, sidenav)"></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-xs>
+                <button mat-icon-buton (click)="onToggleSidenav(sidenav)">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>Vérnyomásmérés</div>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs class="navigation_wrapper">
+              <ul fxLayout fxLayoutGap="0.2em" class="navigation_items">
+                <li><a routerLink="/main">Home</a></li>
+                <li><a routerLink="/login">Belépés</a></li>
+                <li><a routerLink="/regist">Regisztráció</a></li>
+                <li><a routerLink="/patient">Tanácsadás</a></li>
+                <li><a routerLink="/doctor">Beteglap</a></li>
+              </ul>
+            </div>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
