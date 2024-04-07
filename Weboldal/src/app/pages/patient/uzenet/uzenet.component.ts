@@ -24,12 +24,12 @@ export class UzenetComponent {
 
   ngOnInit(): void {
     // Példa adatok betöltése
-    this.uzenetek.push({
+    /*this.uzenetek.push({
       tab: 0,
       orvosTab: 0,
       text: 'valami',
       date: new Date()
-    });
+    });*/
   }
 
   onAdd(): void {

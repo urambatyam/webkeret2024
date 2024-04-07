@@ -24,12 +24,12 @@ export class MeresComponent {
 
   ngOnInit(): void {
     // Példa adatok betöltése
-    this.patients.push({
+    /*this.patients.push({
       tab: 0,
       disztoles: 1,
       szisztoles: 2,
       date: new Date()
-    });
+    });*/
   }
 
   onAdd(): void {

@@ -6,13 +6,15 @@ import { PatientComponent } from './patient.component';
 import { MeresComponent } from './meres/meres.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UzenetComponent } from './uzenet/uzenet.component';
+import { CsoPipe } from 'src/app/shared/pipes/cso.pipe';
 
 
 @NgModule({
   declarations: [
     PatientComponent,
     MeresComponent,
-    UzenetComponent
+    UzenetComponent,
+    CsoPipe
   ],
   imports: [
     ReactiveFormsModule,

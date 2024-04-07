@@ -4,14 +4,16 @@
         <thead>
           <tr>
             <th>Orvosi tanács</th>
-            <th>Dátum</th>
-            <th></th>
+            <th colspan="2">Dátum</th>
           </tr>
         </thead>
-        <tbody>
+        <tr *ngIf="!uzenetek.length">
+          <td colspan="3"><p>Orvosaink még nem értékelték ki az adatait</p></td>
+        </tr>
+        <tbody *ngIf="uzenetek.length">
           <tr *ngFor="let uzenet of uzenetek">
             <td>{{ uzenet.text }}</td>
-            <td>{{ uzenet.date }}</td>
+            <td>{{ uzenet.date | cso}}</td>
             <td>
               <button (click)="onDelete(uzenet)">Törlés</button>
             </td>
