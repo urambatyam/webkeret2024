@@ -1,0 +1,15 @@
+<table>
+    <tr>
+        <th>Szitoles</th>
+        <th>Disztoles</th>
+        <th>Dátum</th>
+    </tr>
+    <tr *ngIf="!meresek.length">
+        <td colspan="3">Válasz ki egy pácienst!</td>
+    </tr> 
+    <tr *ngFor="let meres of meresek">
+        <td>{{meres.szisztoles}}</td>
+        <td>{{meres.disztoles}}</td>
+        <td>{{meres.date | cso}}</td>
+    </tr>
+</table>

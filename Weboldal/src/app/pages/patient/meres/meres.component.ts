@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Blood } from 'src/app/shared/model/blood';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-meres',
   templateUrl: './meres.component.html',
-  styleUrl: './meres.component.sass'
+  styleUrl: './meres.component.sass',
+  providers: [provideNativeDateAdapter()]
 })
 export class MeresComponent {
   TableForm = this.createForm({
@@ -23,13 +25,31 @@ export class MeresComponent {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // Példa adatok betöltése
-    /*this.patients.push({
+  
+    this.patients.push({
       tab: 0,
-      disztoles: 1,
-      szisztoles: 2,
+      disztoles: 70,
+      szisztoles: 120,
       date: new Date()
-    });*/
+    });
+    this.patients.push({
+      tab: 0,
+      disztoles: 78,
+      szisztoles: 132,
+      date: new Date()
+    });
+    this.patients.push({
+      tab: 0,
+      disztoles: 80,
+      szisztoles: 137,
+      date: new Date()
+    });
+    this.patients.push({
+      tab: 0,
+      disztoles: 90,
+      szisztoles: 140,
+      date: new Date()
+    });
   }
 
   onAdd(): void {

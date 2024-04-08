@@ -9,14 +9,8 @@ import { User } from 'src/app/shared/model/user';
 })
 export class ListaComponent {
   tabs: User[] = [];
-  meresek: Blood[] = [];
-  gomb: boolean = false;
   constructor(){}
   reszletek(tab:number){
-    this.gomb = true;
+    console.log(tab)
   }
-  bezar(){
-    this.gomb = false;
-  }
-
 }

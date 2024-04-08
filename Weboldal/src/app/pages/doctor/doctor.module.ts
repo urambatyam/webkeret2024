@@ -5,8 +5,12 @@ import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorComponent } from './doctor.component';
 import { ListaComponent } from './lista/lista.component';
 import { TanacsComponent } from './tanacs/tanacs.component';
-import { CsoPipe } from 'src/app/shared/pipes/cso.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReszletekComponent } from './reszletek/reszletek.component';
+import { KozosModule } from 'src/app/shared/kozos/kozos.module';
+
+
+
 
 
 @NgModule({
@@ -14,12 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     DoctorComponent,
     ListaComponent,
     TanacsComponent,
-    CsoPipe
+    ReszletekComponent
   ],
   imports: [
     CommonModule,
     DoctorRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    KozosModule
   ]
 })
 export class DoctorModule { }

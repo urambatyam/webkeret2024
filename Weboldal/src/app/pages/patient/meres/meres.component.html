@@ -2,10 +2,11 @@
     <form [formGroup]="TableForm" (ngSubmit)="onAdd()">
       <table class="table">
         <thead>
-          <tr class="edge">
+          <tr>
             <th>Disztoles</th>
             <th>Szisztoles</th>
-            <th colspan="2">Dátum</th>
+            <th>Dátum</th>
+            <th>Törlés</th>
           </tr>
         </thead>
         <tbody>
@@ -17,13 +18,35 @@
             <td>{{ patient.szisztoles }}</td>
             <td>{{ patient.date | cso}}</td>
             <td>
-              <button (click)="onDelete(patient)">Törlés</button>
+              <button mat-fab  (click)="onDelete(patient)">
+                <mat-icon color="primary" >cancel</mat-icon>
+              </button>
             </td>
           </tr>
-          <tr class="edge">
-            <td><input type="number" formControlName="disztoles" /></td>
-            <td><input type="number" formControlName="szisztoles" /></td>
-            <td colspan="2"><button type="submit">Hozzáadás</button></td>
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput type="number" formControlName="disztoles" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput type="number" formControlName="szisztoles" />
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <mat-label>Válasz dátumot</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </td>
+            <td>
+              <button mat-fab type="submit">
+                <mat-icon color="primary" >add_circle</mat-icon>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

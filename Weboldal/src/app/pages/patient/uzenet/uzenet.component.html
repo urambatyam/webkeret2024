@@ -15,12 +15,22 @@
             <td>{{ uzenet.text }}</td>
             <td>{{ uzenet.date | cso}}</td>
             <td>
-              <button (click)="onDelete(uzenet)">Törlés</button>
+              <button mat-fab (click)="onDelete(uzenet)">
+                <mat-icon color="primary">cancel</mat-icon>
+              </button>
             </td>
           </tr>
           <tr>
-            <td><textarea formControlName="text" id="" cols="30" rows="10"></textarea></td>
-            <td colspan="2"><button type="submit">Hozzáadás</button></td>
+            <td>
+              <mat-form-field>
+                <textarea matInput formControlName="text" id="" cols="30" rows="10"></textarea>
+              </mat-form-field>
+            </td>
+            <td colspan="2">
+              <button mat-fab type="submit">
+                <mat-icon color="primary" >add_circle</mat-icon>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
