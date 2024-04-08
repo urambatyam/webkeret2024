@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToltService } from '../../shared/services/tolt.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { error } from 'console';
 
 
 
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
   loading: boolean = false;
 
-  constructor(private router: Router, private loadingService: ToltService) { }
+  constructor(private router: Router, private loadingService: ToltService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy{
 
     // Observable
     // memory leak
-    this.loadingObservation = this.loadingService.loadingWithObservable(this.email.value as string, this.jelszo.value as string)
+    /*this.loadingObservation = this.loadingService.loadingWithObservable(this.email.value as string, this.jelszo.value as string)
     this.loadingSubscription = this.loadingObservation
       .subscribe(
         {
@@ -65,7 +67,15 @@ export class LoginComponent implements OnInit, OnDestroy{
             this.loading = false;
           }
         }
-      );
+      );*/
+      this.authService.Login(this.email.value as string, this.jelszo.value as string).then(cred => {
+        console.log(cred);
+        this.router.navigateByUrl('/main');
+        this.loading = false;
+      }).catch( error => {
+        console.error(error);
+        this.loading = false;
+      });
   }
 
   ngOnDestroy() {

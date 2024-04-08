@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "webfejlesztes-2024": {
+      "hosting": {
+        "my-second-project3": [
+          "webfejlesztes-2024"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "webfejlesztes-2024"
+  }
+}
