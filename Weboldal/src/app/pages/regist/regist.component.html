@@ -1,3 +1,6 @@
+<span class="loading-indicator" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</span>
 <div class="container">
     <h1>Regisztráció</h1>
     <form [formGroup]="regForm" (ngSubmit)="registral()">

@@ -17,6 +17,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire/compat'
+import { environment } from 'src/environments/environment';
 
 
 
@@ -38,7 +39,7 @@ import {AngularFireModule} from '@angular/fire/compat'
     MatIconModule,
     FlexLayoutModule,
     MatListModule,
-    AngularFireModule.initializeApp({"projectId":"webfejlesztes-2024","appId":"1:401086229314:web:ea29334972e013b755f6db","storageBucket":"webfejlesztes-2024.appspot.com","apiKey":"AIzaSyDpKBSKb1zR6APYbjKI--7ncfDbThSQ1Sk","authDomain":"webfejlesztes-2024.firebaseapp.com","messagingSenderId":"401086229314","measurementId":"G-CCYKPJ6P8H"}),
+    AngularFireModule.initializeApp(environment.firebase),
     //provideFirebaseApp(() => initializeApp({"projectId":"webfejlesztes-2024","appId":"1:401086229314:web:ea29334972e013b755f6db","storageBucket":"webfejlesztes-2024.appspot.com","apiKey":"AIzaSyDpKBSKb1zR6APYbjKI--7ncfDbThSQ1Sk","authDomain":"webfejlesztes-2024.firebaseapp.com","messagingSenderId":"401086229314","measurementId":"G-CCYKPJ6P8H"})),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

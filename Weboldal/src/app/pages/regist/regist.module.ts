@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class RegistModule { }

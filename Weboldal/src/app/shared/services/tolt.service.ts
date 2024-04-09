@@ -17,7 +17,7 @@ export class ToltService {
         } else {
           reject(false);
         }
-      }, 3000);
+      }, 6000);
     });
   }
 
