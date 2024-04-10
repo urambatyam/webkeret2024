@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent implements OnInit {
   routes: Array<string> = [];
   title = 'Orvosi vérnyomásmérő oldal';
   page = '';
-  constructor(private router: Router){}
+  loggedInUser?: firebase.default.User | null;
+  constructor(private router: Router, private authService: AuthService){}
   ngOnInit(){
     this.routes = this.router.config.map(conf => conf.path) as string[];
 
@@ -33,5 +35,12 @@ export class AppComponent implements OnInit {
     if (event === true) {
       sidenav.close();
     }
+  }
+  logout(_?: boolean) {
+    this.authService.logout().then(() => {
+      console.log('Sikeres  kijelentkezés');
+    }).catch(error => {
+      console.error(error);
+    });
   }
 }
