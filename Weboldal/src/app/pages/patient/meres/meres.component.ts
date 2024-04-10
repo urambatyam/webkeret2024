@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Blood } from 'src/app/shared/model/blood';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { BloodService } from 'src/app/shared/services/blood.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-meres',
@@ -20,13 +22,33 @@ export class MeresComponent {
     let formGroup = this.fb.group(model);
     return formGroup;
   }
+  //userData = JSON.parse(localStorage.getItem('user') as string);
   patients: Blood[] = [];
+  
+  
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { 
+    console.log(localStorage.getItem('user'))
+  }
 
   ngOnInit(): void {
+    
+    const userData = JSON.parse(localStorage.getItem('user') as string); // Felhasználó adatainak lekérése a localStorage-ból
+
+    if (userData) {
+      const userId = userData.uid; // Felhasználó azonosítója
+      this.bloodservice.getAll(userId).subscribe(data => {
+        this.patients = data; // Adatok mentése a patients tömbbe
+      });
+    } else {
+      console.error('No user data found in localStorage');
+    }
+    console.log(this.patients)
+  }
+
+ 
   
-    this.patients.push({
+    /*this.patients.push({
       tb: 0,
       disztoles: 70,
       szisztoles: 120,
@@ -49,26 +71,8 @@ export class MeresComponent {
       disztoles: 90,
       szisztoles: 140,
       date: new Date()
-    });
-  }
-
-  onAdd(): void {
-    const newPatient: Blood = {
-      tb: this.TableForm.get('tab')?.value || 0,
-      disztoles: this.TableForm.get('disztoles')?.value || 0,
-      szisztoles: this.TableForm.get('szisztoles')?.value || 0,
-      date: this.TableForm.get('date')?.value || new Date()
-    };
-  
-    if (newPatient.tb !== null && newPatient.disztoles !== null && newPatient.szisztoles !== null && newPatient.date !== null) {
-      this.patients.push(newPatient);
+    });*/
+    onAdd(){
+      
     }
-    this.TableForm.reset({ tb: 0, disztoles: 0, szisztoles: 0, date: new Date() });
   }
-
-  onDelete(patient: Blood): void {
-    // Beteg törlése
-    this.patients = this.patients.filter(p => p !== patient);
-  }
-
-}

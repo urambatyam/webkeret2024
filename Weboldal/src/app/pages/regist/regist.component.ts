@@ -35,20 +35,21 @@ export class RegistComponent implements OnDestroy{
     if (this.regForm.valid && this.regForm.get('jelszo')?.value === this.regForm.get('rejelszo')?.value) {
       this.authService.reg(this.regForm.get('email')?.value as string, this.regForm.get('jelszo')?.value as string).then(cred => {
         const user: User = {
-          id: cred.user?.uid as string,
           email: this.regForm.get('email')?.value as string,
-          veznev: this.regForm.get('veznev')?.value as string,
+          id: cred.user?.uid as string,
           kernev: this.regForm.get('kernev')?.value as string,
           orvos: this.regForm.get('orvos')?.value as boolean,
           tb: this.regForm.get('tab')?.value as number,
+          veznev: this.regForm.get('veznev')?.value as string
         };
         this.userservice.create(user).then(_ => {
-          console.log('User added successfully.');
+          console.log('Sikerült regisztrálni');
+          this.loading = false;
+          this.router.navigateByUrl('/main');
         }).catch(error => {
           console.error(error);
-        })
-        this.loading = false;
-        this.router.navigateByUrl('/main');
+          this.loading = false;
+        });
       }).catch( error => {
         console.error(error);
         this.loading = false;

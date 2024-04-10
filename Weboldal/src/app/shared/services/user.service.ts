@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from '../model/user';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -33,4 +34,5 @@ export class UserService {
   delete(id: string) {
     return this.afs.collection<User>(this.collectionName).doc(id).delete();
   }
+ 
 }
