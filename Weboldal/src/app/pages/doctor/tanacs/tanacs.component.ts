@@ -9,7 +9,7 @@ import { Dia } from 'src/app/shared/model/diagnosztika';
 })
 export class TanacsComponent {
   UzenetForm = this.createForm({
-    tab: 0,
+    tb: 0,
     orvosTab: 0,
     text: '',
     date: new Date()
@@ -34,17 +34,17 @@ export class TanacsComponent {
 
   onAdd(): void {
     const ujuzent: Dia = {
-      tab: this.UzenetForm.get('tab')?.value || 0,
+      tb: this.UzenetForm.get('tab')?.value || 0,
       orvosTab: this.UzenetForm.get('orvosTab')?.value || 0,
       text: this.UzenetForm.get('text')?.value || '',
       date: this.UzenetForm.get('date')?.value || new Date()
     };
   
-    if (ujuzent.tab !== null && ujuzent.orvosTab !== null && ujuzent.text !== null && ujuzent.date !== null) {
+    if (ujuzent.tb !== null && ujuzent.orvosTab !== null && ujuzent.text !== null && ujuzent.date !== null) {
       console.log(ujuzent);
       this.uzenetek.push(ujuzent);
     }
-    this.UzenetForm.reset({ tab: 0,
+    this.UzenetForm.reset({ tb: 0,
       orvosTab: 0,
       text: '',
       date: new Date() });

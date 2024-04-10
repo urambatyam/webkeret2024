@@ -1,5 +1,5 @@
 export interface Dia{
-    tab: number;
+    tb: number;
     orvosTab: number
     text: string;
     date: Date;

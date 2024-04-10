@@ -1,5 +1,5 @@
 export interface Blood{
-    tab: number;
+    tb: number;
     szisztoles: number;
     disztoles: number;
     date: Date;

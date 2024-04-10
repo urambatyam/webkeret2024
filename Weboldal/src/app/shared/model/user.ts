@@ -1,8 +1,8 @@
 export interface User{
-    veznev: string|null;
-    kernev: string|null;
+    id: string;
+    veznev: string;
+    kernev: string;
     email: string;
-    jelszo: string;
-    tab: number;
+    tb: number;
     orvos: boolean;
 }
