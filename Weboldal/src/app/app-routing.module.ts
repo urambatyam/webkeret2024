@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   { 
     path: 'main', 
-    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule) 
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
+    canActivate: [AuthGuard] 
   },
   { 
     path: 'login', 
@@ -12,11 +14,13 @@ const routes: Routes = [
   },
   { 
     path: 'doctor', 
-    loadChildren: () => import('./pages/doctor/doctor.module').then(m => m.DoctorModule) 
+    loadChildren: () => import('./pages/doctor/doctor.module').then(m => m.DoctorModule),
+    canActivate: [AuthGuard] 
   },
   { 
     path: 'patient', 
-    loadChildren: () => import('./pages/patient/patient.module').then(m => m.PatientModule) 
+    loadChildren: () => import('./pages/patient/patient.module').then(m => m.PatientModule),
+    canActivate: [AuthGuard] 
   },
   { 
     path: 'regist', 

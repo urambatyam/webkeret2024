@@ -1,6 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
-        <app-menu (selected)="nav($event)" [aholVagyunk]="page" *ngIf="page" (onCloseSidenav)="onClose($event, sidenav)" [LoggedInUser]="loggedInUser" (onLogout)="logout($event)"><></app-menu>
+        <app-menu (selected)="nav($event)" [aholVagyunk]="page" *ngIf="page" (onCloseSidenav)="onClose($event, sidenav)" [loggedInUser]="loggedInUser" (onLogout)="logout($event)"><></app-menu>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">

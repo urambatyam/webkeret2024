@@ -7,13 +7,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class MenuComponent {
   @Input() aholVagyunk: string = '';
+  @Input() loggedInUser?: firebase.default.User | null;
   @Output() selected: EventEmitter<string> = new EventEmitter;
   @Output() onCloseSidenav: EventEmitter<boolean> = new EventEmitter();
+  @Output() onLogout: EventEmitter<boolean> = new EventEmitter();
   menuMagic(){
     this.selected.emit(this.aholVagyunk);
   }
-  close() {
+  close(logout?: boolean) {
     this.onCloseSidenav.emit(true);
+    if (logout === true) {
+      this.onLogout.emit(logout);
+    }
   }
 
 }

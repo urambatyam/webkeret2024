@@ -8,9 +8,44 @@ import { Chart, registerables } from 'chart.js'; // Chart.js modul importálása
 })
 export class StatisztikaComponent implements OnInit {
   // Adatok definiálása
-  Datumlabels: string[] = ["2023-11-11", "2023-11-12", "2023-11-13","2023-11-14","2023-11-15"];
-  Sziszoltes: number[] = [120, 103, 134, 155, 142];
-  Diszoltes: number[] = [80, 55, 78, 90, 73];
+  preDatumlabels: string[] = ["2023-11-11", "2023-11-12", "2023-11-13","2023-11-14","2023-11-15","2023-11-15","2023-11-15","2023-11-15"];
+  preSziszoltes: number[] = [120, 103, 134, 155, 142,105,150,120];
+  preDiszoltes: number[] = [80, 55, 78, 90, 73,67,78,82];
+  //Datumlabels: string[] = ["2023-11-11", "2023-11-12", "2023-11-13","2023-11-14","2023-11-15","2023-11-15","2023-11-15","2023-11-15"];
+  //Sziszoltes: number[] = [120, 103, 134, 155, 142,105,150,120];
+  //Diszoltes: number[] = [80, 55, 78, 90, 73,67,78,82];
+  tisztit(tomb: number[],tomb2: number[], datums: string[]){
+    let r = new Map();
+    let r2 = new Map();
+
+    for (let i = 0; i < this.preDatumlabels.length; i++) {
+      if(r.has(datums[i])){
+        r.set(datums[i], (r.get(datums[i])+tomb[i])/2)
+
+      }else{
+        r.set(datums[i],tomb[i])
+      }
+    }
+    for (let i = 0; i < this.preDatumlabels.length; i++) {
+      if(r2.has(datums[i])){
+        r2.set(datums[i], (r2.get(datums[i])+tomb2[i])/2)
+
+      }else{
+        r2.set(datums[i],tomb2[i])
+      }
+    }
+    let d:string[] = [...r.keys()];
+    let s:number[] = [...r.values()];
+    let dis:number[] = [...r2.values()];
+    return {d,s,dis};
+  }
+  tomb = this.tisztit(this.preSziszoltes,this.preDiszoltes,this.preDatumlabels);
+
+  Datumlabels: string[] = this.tomb.d;
+  Sziszoltes: number[] = this.tomb.s;
+  Diszoltes: number[] = this.tomb.dis;
+  //let tomb = this.tisztit(this.preSziszoltes,this.preDiszoltes,this.preDatumlabels);
+
 
   // Optimális tartomány értékei
   SzoptimalMin: number = 90;
@@ -26,6 +61,7 @@ export class StatisztikaComponent implements OnInit {
 
   ngOnInit() {
     this.createChart();
+    
   }
 
   createChart() {
@@ -60,13 +96,14 @@ export class StatisztikaComponent implements OnInit {
       options: {
         scales: {
           y: {
-            suggestedMin: 80,
-            suggestedMax: 200
+            suggestedMin: Math.min(...this.Sziszoltes)-10<this.SzoptimalMin?Math.min(...this.Sziszoltes)-10:this.SzoptimalMin-10,
+            suggestedMax: Math.max(...this.Sziszoltes)+10>this.SzoptimalMax?Math.max(...this.Sziszoltes)+10:this.SzoptimalMin+10,
           }
         }
       }
 
     };
+
     this.config2 = {
       type: 'line',
       data: {
@@ -98,8 +135,8 @@ export class StatisztikaComponent implements OnInit {
       options: {
         scales: {
           y: {
-            suggestedMin: 40,
-            suggestedMax: 100
+            suggestedMin: Math.min(...this.Diszoltes)-10<this.DoptimalMin ? Math.min(...this.Diszoltes)-10:this.DoptimalMin-10,
+            suggestedMax: Math.max(...this.Diszoltes)+10>this.DoptimalMax ? Math.max(...this.Diszoltes)+10:this.DoptimalMax+10,
           }
         }
       }
