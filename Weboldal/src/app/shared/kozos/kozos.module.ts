@@ -7,6 +7,7 @@ import { CsoPipe } from '../pipes/cso.pipe';
 @NgModule({
   declarations: [CsoPipe],
   imports: [CommonModule],
-  exports: [CsoPipe]
+  exports: [CsoPipe],
+  providers: [CsoPipe] 
 })
 export class KozosModule { }

@@ -34,5 +34,8 @@ export class UserService {
   delete(id: string) {
     return this.afs.collection<User>(this.collectionName).doc(id).delete();
   }
+  notMe(id: string): Observable<User[]> {
+    return this.afs.collection<User>(this.collectionName, ref => ref.where('id', '!=', id)).valueChanges();
+  }
  
 }

@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   loggedInUser?: firebase.default.User | null;
   constructor(private router: Router, private authService: AuthService){}
   ngOnInit(){
+    localStorage.setItem('id', 'null');
     this.routes = this.router.config.map(conf => conf.path) as string[];
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe( (events: any) => {

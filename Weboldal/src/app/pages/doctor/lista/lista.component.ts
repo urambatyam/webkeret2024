@@ -1,16 +1,32 @@
-import { Component } from '@angular/core';
-import { Blood } from 'src/app/shared/model/blood';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/shared/model/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.sass'
 })
-export class ListaComponent {
-  tabs: User[] = [];
-  constructor(){}
-  reszletek(id:string){
-    console.log(id)
+export class ListaComponent  implements OnInit {
+  @Output() idChanged = new EventEmitter<string>();
+  tbs: User[] = [];
+  constructor(private router: Router,private users: UserService){}
+  ngOnInit(): void {
+    const userData = JSON.parse(localStorage.getItem('user') as string); 
+
+    if (userData) {
+      const userId = userData.uid; 
+      this.users.notMe(userId).subscribe(data => {
+        this.tbs = data; 
+      });
+    } else {
+      console.error('No user data found in localStorage');
+    }
   }
+  
+  reszletek(id: string) {
+    this.idChanged.emit(id);
+  }
+  
 }

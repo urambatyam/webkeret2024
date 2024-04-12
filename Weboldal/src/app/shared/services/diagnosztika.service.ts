@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class diagnosztikaService {
+export class DiagnosztikaService {
 
   collectionName = 'uzentek';
 
@@ -16,6 +16,7 @@ export class diagnosztikaService {
   // CRUD (Create, Read, Update, Delete)
 
   create(user: Dia) {
+    user.id = this.afs.createId();
     return this.afs.collection<Dia>(this.collectionName).doc(user.id).set(user);
   }
 

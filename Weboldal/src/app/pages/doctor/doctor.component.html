@@ -1,14 +1,14 @@
 <div>
     <div id="e">
         <h2>Páciensek</h2>
-        <app-lista></app-lista>
+        <app-lista (idChanged)="onIdChanged($event)"></app-lista>
     </div>
     <div id="m">
         <h2>Részletek</h2>
-        <app-reszletek></app-reszletek>
+        <app-reszletek [input]="meresek"></app-reszletek>
     </div>
     <div id="h">
         <h2>Diagnosztika irasa</h2>
-        <app-tanacs></app-tanacs>
+        <app-tanacs [id]="selectedId"></app-tanacs>
     </div>
 </div>

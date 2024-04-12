@@ -15,7 +15,7 @@
             <td>{{ uzenet.text }}</td>
             <td>{{ uzenet.date | cso}}</td>
             <td>
-              <button mat-fab (click)="onDelete(uzenet)">
+              <button mat-fab (click)="onDelete(uzenet.id)">
                 <mat-icon color="primary">cancel</mat-icon>
               </button>
             </td>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, Input, SimpleChanges } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Dia } from 'src/app/shared/model/diagnosztika';
+import { DiagnosztikaService } from 'src/app/shared/services/diagnosztika.service';
 
 @Component({
   selector: 'app-tanacs',
@@ -8,51 +9,61 @@ import { Dia } from 'src/app/shared/model/diagnosztika';
   styleUrl: './tanacs.component.sass'
 })
 export class TanacsComponent {
+  
+  @Input() id: string| null = null;
+  bool:boolean = this.id!==null;
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("id ", this.id)
+    if (changes['id'] && changes['id'].currentValue) {
+      console.log(this.id)
+      this.bool = changes['id'].currentValue!==null;
+    }
+  }
   UzenetForm = this.createForm({
-    tb: 0,
-    orvosTab: 0,
+    id: '',
+    fogado: '',
+    kuldo: '',
     text: '',
     date: new Date()
   })
   createForm(model: Dia){
     let formGroup = this.fb.group(model);
+    formGroup.get('text')?.addValidators([Validators.required,Validators.maxLength(200)]);
     return formGroup;
   }
   uzenetek: Dia[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private diaservice: DiagnosztikaService) {}
 
-  ngOnInit(): void {
-    // Példa adatok betöltése
-    /*this.uzenetek.push({
-      tab: 0,
-      orvosTab: 0,
-      text: 'valami',
-      date: new Date()
-    });*/
-  }
+  
 
   onAdd(): void {
+
+    const userData = JSON.parse(localStorage.getItem('user') as string);
     const ujuzent: Dia = {
-      tb: this.UzenetForm.get('tab')?.value || 0,
-      orvosTab: this.UzenetForm.get('orvosTab')?.value || 0,
-      text: this.UzenetForm.get('text')?.value || '',
-      date: this.UzenetForm.get('date')?.value || new Date()
+      id: '',
+      fogado: this.id?this.id:'',
+      kuldo: userData.uid,
+      text: this.UzenetForm.get('text')?.value as string,
+      date: new Date()
     };
+
   
-    if (ujuzent.tb !== null && ujuzent.orvosTab !== null && ujuzent.text !== null && ujuzent.date !== null) {
+    if (this.UzenetForm.valid) {
       console.log(ujuzent);
+      this.diaservice.create(ujuzent);
       this.uzenetek.push(ujuzent);
     }
-    this.UzenetForm.reset({ tb: 0,
-      orvosTab: 0,
+    this.UzenetForm.reset({ 
+      id: '',
+      fogado: '',
+      kuldo: '',
       text: '',
-      date: new Date() });
+      date: new Date()});
   }
 
-  onDelete(patient: Dia): void {
-    // Beteg törlése
-    this.uzenetek = this.uzenetek.filter(p => p !== patient);
+  onDelete(id: string): void {
+    this.diaservice.delete(id);
   }
 
 }

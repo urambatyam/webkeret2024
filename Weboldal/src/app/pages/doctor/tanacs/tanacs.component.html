@@ -8,21 +8,22 @@
           </tr>
         </thead>
         <tr *ngIf="!uzenetek.length">
-          <td colspan="3"><p>Nem válaszottál pácienst</p></td>
+          <td colspan="3"><p>Nem válaszottál pácienst vagy ennek a pacinsnek még ne írtál tanácsot</p></td>
         </tr>
         <tbody *ngIf="uzenetek.length">
           <tr *ngFor="let uzenet of uzenetek">
             <td>{{ uzenet.text }}</td>
             <td>{{ uzenet.date | cso}}</td>
             <td>
-              <button (click)="onDelete(uzenet)">Törlés</button>
+              <button (click)="onDelete(uzenet.id)">Törlés</button>
             </td>
           </tr>
-          <tr>
+        </tbody>
+          <tr *ngIf="bool">
             <td><textarea formControlName="text" id="" cols="30" rows="10"></textarea></td>
             <td colspan="2"><button type="submit">Hozzáadás</button></td>
           </tr>
-        </tbody>
+        
       </table>
     </form>
   </div>

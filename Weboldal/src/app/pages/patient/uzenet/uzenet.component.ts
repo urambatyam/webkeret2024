@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Dia } from 'src/app/shared/model/diagnosztika';
+import { DiagnosztikaService } from 'src/app/shared/services/diagnosztika.service';
 
 @Component({
   selector: 'app-uzenet',
@@ -10,8 +11,8 @@ import { Dia } from 'src/app/shared/model/diagnosztika';
 export class UzenetComponent {
   UzenetForm = this.createForm({
     id: '',
-    kuldo: '',
     fogado: '',
+    kuldo: '',
     text: '',
     date: new Date()
   })
@@ -22,19 +23,38 @@ export class UzenetComponent {
   }
   uzenetek: Dia[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private diaservice: DiagnosztikaService) { }
 
   ngOnInit(): void {
+ 
+  }
+
+  onAdd(): void {
+    const userData = JSON.parse(localStorage.getItem('user') as string);
+    const ujuzent: Dia = {
+      id: '',
+      fogado: this.uzenetek[-1].kuldo,
+      kuldo: userData.uid,
+      text: this.UzenetForm.get('text')?.value as string,
+      date: new Date()
+    };
+
   
- 
+    if (this.UzenetForm.valid) {
+      console.log(ujuzent);
+      this.diaservice.create(ujuzent);
+      this.uzenetek.push(ujuzent);
+    }
+    this.UzenetForm.reset({ 
+      id: '',
+      fogado: '',
+      kuldo: '',
+      text: '',
+      date: new Date()});
   }
 
-  onAdd() {
- 
-  }
-
-  onDelete(patient: Dia): void {
-   
+  onDelete(id: string): void {
+    this.diaservice.delete(id);
   }
 
 

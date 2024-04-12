@@ -3,15 +3,18 @@
         <thead>
             <tr>
                 <th>TB</th>
+                <th colspan="2">név</th>
                 <th>részletek</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngIf="!tabs.length">
+            <tr *ngIf="!tbs.length">
                 <td colspan="2">Úgytünik nicsenek betegek</td>
             </tr>
-            <tr *ngFor="let tb of tabs;">
+            <tr *ngFor="let tb of tbs;">
                 <td>{{tb.tb}}</td>
+                <td>{{tb.veznev}}</td>
+                <td>{{tb.kernev}}</td>
                 <td>
                     <button (click)="reszletek(tb.id)">Részletek</button>
                 </td>

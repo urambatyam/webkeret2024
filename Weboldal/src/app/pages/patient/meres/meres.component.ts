@@ -26,32 +26,26 @@ export class MeresComponent {
   }
   userData = JSON.parse(localStorage.getItem('user') as string);
   patients: Blood[] = [];
-  
-  
-
-  constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { 
-    console.log(localStorage.getItem('user'))
-  }
-  
-
+  constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { }
   ngOnInit(): void {
-    
-    const userData = JSON.parse(localStorage.getItem('user') as string); // Felhasználó adatainak lekérése a localStorage-ból
+    const userData = JSON.parse(localStorage.getItem('user') as string); 
 
     if (userData) {
-      const userId = userData.uid; // Felhasználó azonosítója
+      const userId = userData.uid; 
       this.bloodservice.getAll(userId).subscribe(data => {
-        this.patients = data; // Adatok mentése a patients tömbbe
-        //localStorage.setItem('bloods', JSON.stringify(data));
+        this.patients = data; 
+        
       });
     } else {
       console.error('No user data found in localStorage');
     }
-    console.log(this.patients)
   }
-
   onAdd(){
       if(this.TableForm.valid){
+        console.log("valid form");
+        console.log("user id ", this.userData.uid);
+        console.log("tableform tartalama ", this.TableForm.value as Blood);
+        
         this.bloodservice.create(this.userData.uid, this.TableForm.value as Blood)
       }
     }

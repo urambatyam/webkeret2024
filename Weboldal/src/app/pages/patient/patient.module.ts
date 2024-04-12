@@ -34,7 +34,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
   ]
 })
 export class PatientModule { }
