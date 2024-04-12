@@ -8,6 +8,8 @@ import { Chart, registerables } from 'chart.js'; // Chart.js modul importálása
 })
 export class StatisztikaComponent implements OnInit {
   // Adatok definiálása
+  bloods = JSON.parse(localStorage.getItem('user') as string);
+
   preDatumlabels: string[] = ["2023-11-11", "2023-11-12", "2023-11-13","2023-11-14","2023-11-15","2023-11-15","2023-11-15","2023-11-15"];
   preSziszoltes: number[] = [120, 103, 134, 155, 142,105,150,120];
   preDiszoltes: number[] = [80, 55, 78, 90, 73,67,78,82];
@@ -15,17 +17,30 @@ export class StatisztikaComponent implements OnInit {
   //Sziszoltes: number[] = [120, 103, 134, 155, 142,105,150,120];
   //Diszoltes: number[] = [80, 55, 78, 90, 73,67,78,82];
   tisztit(tomb: number[],tomb2: number[], datums: string[]){
-    let r = new Map();
+    let r = new Map<string,number[]>();
     let r2 = new Map();
+    //let temp = new Map();
 
     for (let i = 0; i < this.preDatumlabels.length; i++) {
+      if(r.has(datums[i])){
+        r.get(datums[i])?.push(tomb[i])
+      } else{
+        r.set(datums[i],[tomb[i]])
+      }
+    }
+
+
+
+
+
+    /*for (let i = 0; i < this.preDatumlabels.length; i++) {
       if(r.has(datums[i])){
         r.set(datums[i], (r.get(datums[i])+tomb[i])/2)
 
       }else{
         r.set(datums[i],tomb[i])
       }
-    }
+    }*/
     for (let i = 0; i < this.preDatumlabels.length; i++) {
       if(r2.has(datums[i])){
         r2.set(datums[i], (r2.get(datums[i])+tomb2[i])/2)
@@ -35,7 +50,12 @@ export class StatisztikaComponent implements OnInit {
       }
     }
     let d:string[] = [...r.keys()];
-    let s:number[] = [...r.values()];
+    
+    r.forEach(i => {
+      if(i.length > 0){
+        
+      }
+    });
     let dis:number[] = [...r2.values()];
     return {d,s,dis};
   }

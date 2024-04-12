@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Dia } from 'src/app/shared/model/diagnosztika';
 
 @Component({
@@ -9,13 +9,15 @@ import { Dia } from 'src/app/shared/model/diagnosztika';
 })
 export class UzenetComponent {
   UzenetForm = this.createForm({
-    tb: 0,
-    orvosTab: 0,
+    id: '',
+    kuldo: '',
+    fogado: '',
     text: '',
     date: new Date()
   })
   createForm(model: Dia){
     let formGroup = this.fb.group(model);
+    formGroup.get('text')?.addValidators([Validators.required,Validators.maxLength(200)]);
     return formGroup;
   }
   uzenetek: Dia[] = [];
@@ -23,36 +25,16 @@ export class UzenetComponent {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // Példa adatok betöltése
-    /*this.uzenetek.push({
-      tab: 0,
-      orvosTab: 0,
-      text: 'valami',
-      date: new Date()
-    });*/
+  
+ 
   }
 
-  onAdd(): void {
-    const ujuzent: Dia = {
-      tb: this.UzenetForm.get('tab')?.value || 0,
-      orvosTab: this.UzenetForm.get('orvosTab')?.value || 0,
-      text: this.UzenetForm.get('text')?.value || '',
-      date: this.UzenetForm.get('date')?.value || new Date()
-    };
-  
-    if (ujuzent.tb !== null && ujuzent.orvosTab !== null && ujuzent.text !== null && ujuzent.date !== null) {
-      console.log(ujuzent);
-      this.uzenetek.push(ujuzent);
-    }
-    this.UzenetForm.reset({ tb: 0,
-      orvosTab: 0,
-      text: '',
-      date: new Date() });
+  onAdd() {
+ 
   }
 
   onDelete(patient: Dia): void {
-    // Beteg törlése
-    this.uzenetek = this.uzenetek.filter(p => p !== patient);
+   
   }
 
 

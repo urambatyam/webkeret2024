@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/model/user';
 export class ListaComponent {
   tabs: User[] = [];
   constructor(){}
-  reszletek(tab:number){
-    console.log(tab)
+  reszletek(id:string){
+    console.log(id)
   }
 }

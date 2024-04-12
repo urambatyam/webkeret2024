@@ -1,6 +1,7 @@
 export interface Dia{
-    tb: number;
-    orvosTab: number
+    id: string;
+    kuldo: string 
+    fogado: string
     text: string;
     date: Date;
 }

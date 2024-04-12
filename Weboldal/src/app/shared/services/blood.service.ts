@@ -13,7 +13,8 @@ export class BloodService {
   // CRUD (Create, Read, Update, Delete)
 
   create(userId: string, blood: Blood) {
-    return this.afs.collection('users').doc(userId).collection('bloods').add(blood);
+    blood.id = this.afs.createId();
+    return this.afs.collection('users').doc(blood.id).collection('bloods').add(blood);
   }
 
   getAll(userId: string): Observable<Blood[]> {

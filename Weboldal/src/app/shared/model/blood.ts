@@ -1,6 +1,5 @@
 export interface Blood{
-    id?: string;
-    tb: number;
+    id: string;
     szisztoles: number;
     disztoles: number;
     date: Date;

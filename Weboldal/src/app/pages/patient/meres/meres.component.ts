@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Blood } from 'src/app/shared/model/blood';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { BloodService } from 'src/app/shared/services/blood.service';
@@ -13,16 +13,18 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class MeresComponent {
   TableForm = this.createForm({
-    tb: 0,
+    id: '',
     disztoles: 0,
     szisztoles: 0,
     date: new Date()
   })
   createForm(model: Blood){
     let formGroup = this.fb.group(model);
+    formGroup.get("disztoles")?.addValidators([Validators.required,Validators.min(0),Validators.max(300)])
+    formGroup.get("szisztoles")?.addValidators([Validators.required,Validators.min(0),Validators.max(300)])
     return formGroup;
   }
-  //userData = JSON.parse(localStorage.getItem('user') as string);
+  userData = JSON.parse(localStorage.getItem('user') as string);
   patients: Blood[] = [];
   
   
@@ -30,6 +32,7 @@ export class MeresComponent {
   constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { 
     console.log(localStorage.getItem('user'))
   }
+  
 
   ngOnInit(): void {
     
@@ -39,6 +42,7 @@ export class MeresComponent {
       const userId = userData.uid; // Felhasználó azonosítója
       this.bloodservice.getAll(userId).subscribe(data => {
         this.patients = data; // Adatok mentése a patients tömbbe
+        //localStorage.setItem('bloods', JSON.stringify(data));
       });
     } else {
       console.error('No user data found in localStorage');
@@ -46,33 +50,12 @@ export class MeresComponent {
     console.log(this.patients)
   }
 
- 
-  
-    /*this.patients.push({
-      tb: 0,
-      disztoles: 70,
-      szisztoles: 120,
-      date: new Date()
-    });
-    this.patients.push({
-      tb: 0,
-      disztoles: 78,
-      szisztoles: 132,
-      date: new Date()
-    });
-    this.patients.push({
-      tb: 0,
-      disztoles: 80,
-      szisztoles: 137,
-      date: new Date()
-    });
-    this.patients.push({
-      tb: 0,
-      disztoles: 90,
-      szisztoles: 140,
-      date: new Date()
-    });*/
-    onAdd(){
-      
+  onAdd(){
+      if(this.TableForm.valid){
+        this.bloodservice.create(this.userData.uid, this.TableForm.value as Blood)
+      }
     }
+  torol(bloodid: string){
+    this.bloodservice.delete(this.userData.uid,bloodid);
+  }
   }
