@@ -8,6 +8,9 @@ import { TanacsComponent } from './tanacs/tanacs.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReszletekComponent } from './reszletek/reszletek.component';
 import { KozosModule } from 'src/app/shared/kozos/kozos.module';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -24,7 +27,10 @@ import { KozosModule } from 'src/app/shared/kozos/kozos.module';
     CommonModule,
     DoctorRoutingModule,
     ReactiveFormsModule,
-    KozosModule
+    KozosModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule
   ]
 })
 export class DoctorModule { }

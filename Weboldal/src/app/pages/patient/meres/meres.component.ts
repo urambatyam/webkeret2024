@@ -18,6 +18,12 @@ export class MeresComponent {
     szisztoles: 0,
     date: new Date()
   })
+  updateFrom = this.createForm({
+    id: '',
+    disztoles: 0,
+    szisztoles: 0,
+    date: new Date()
+  })
   createForm(model: Blood){
     let formGroup = this.fb.group(model);
     formGroup.get("disztoles")?.addValidators([Validators.required,Validators.min(0),Validators.max(300)])
@@ -28,7 +34,6 @@ export class MeresComponent {
   patients: Blood[] = [];
   constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { }
   ngOnInit(): void {
-    console.log('alam '+localStorage.getItem('hej'));
     const userData = JSON.parse(localStorage.getItem('user') as string); 
 
     if (userData) {
@@ -37,20 +42,17 @@ export class MeresComponent {
         this.patients = data; 
         
       });
-    } else {
-      console.error('No user data found in localStorage');
-    }
+    } 
   }
   onAdd(){
       if(this.TableForm.valid){
-        console.log("valid form");
-        console.log("user id ", this.userData.uid);
-        console.log("tableform tartalama ", this.TableForm.value as Blood);
-        
         this.bloodservice.create(this.userData.uid, this.TableForm.value as Blood)
       }
     }
   torol(bloodid: string){
     this.bloodservice.delete(this.userData.uid,bloodid);
+  }
+  update(id:string){
+    this.bloodservice.update(this.userData.uid,id,this.updateFrom.value as Blood);
   }
   }

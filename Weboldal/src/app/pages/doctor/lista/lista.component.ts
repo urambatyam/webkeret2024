@@ -20,9 +20,7 @@ export class ListaComponent  implements OnInit {
       this.users.notMe(userId).subscribe(data => {
         this.tbs = data; 
       });
-    } else {
-      console.error('No user data found in localStorage');
-    }
+    } 
   }
   
   reszletek(id: string) {

@@ -11,15 +11,11 @@ import { BloodService } from 'src/app/shared/services/blood.service';
 export class ReszletekComponent implements OnChanges{
   @Input() input: Blood[] | null = null;;
   
-
   meresek: Blood[] = [];
   constructor( private bl: BloodService){}
  
-  
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("input ", this.input)
     if (changes['input'] && changes['input'].currentValue) {
-      console.log(this.input)
       this.meresek = changes['input'].currentValue;
     }
   }

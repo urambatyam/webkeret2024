@@ -19,7 +19,6 @@ export class TanacsComponent implements OnInit, OnChanges {
   uzenetek: Dia[] = [];
   
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('uzenetek '+this.uzenetek)
     this.userek.getById(this.id as string).subscribe((user: User | undefined) => {
       if (user) {
         this.veznev = user.veznev;
@@ -37,13 +36,10 @@ export class TanacsComponent implements OnInit, OnChanges {
         if (data) {
           this.uzenetek = data as Dia[];
         }
-        console.log(this.uzenetek)
       });
       
       
-    } else {
-      console.error('No user data found in localStorage');
-    }
+    } 
     
 
   }
@@ -71,8 +67,6 @@ export class TanacsComponent implements OnInit, OnChanges {
           this.uzenetek = data as Dia[]; 
         }
       });
-    } else {
-      console.error('No user data found in localStorage');
     }
   }
   

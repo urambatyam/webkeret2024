@@ -33,9 +33,7 @@ export class UzenetComponent {
           this.uzenetek = data as unknown as Dia[]; 
         }
       });
-    } else {
-      console.error('No user data found in localStorage');
-    }
+    } 
   }
   onAdd(): void {
     const userData = JSON.parse(localStorage.getItem('user') as string);
@@ -47,7 +45,6 @@ export class UzenetComponent {
       date: new Date()
     };
     if (this.UzenetForm.valid) {
-      console.log(ujuzent);
       this.diaservice.create(ujuzent);
       this.uzenetek.push(ujuzent);
     }

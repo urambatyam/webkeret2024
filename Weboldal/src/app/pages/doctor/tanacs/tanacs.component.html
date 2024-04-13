@@ -18,9 +18,11 @@
         </tbody>
           <tr *ngIf="bool">
             <td>
-              <textarea formControlName="text"  placeholder="kedves {{veznev}} {{kernev}}," cols="100%" rows="10">{{'Kedves '+veznev + ' ' + kernev+','}}</textarea>
+              <mat-form-field>
+                <textarea matInput formControlName="text"  placeholder="kedves {{veznev}} {{kernev}},"  rows="10">{{'Kedves '+veznev + ' ' + kernev+','}}</textarea>
+              </mat-form-field>
             </td>
-            <td colspan="2"><button type="submit">Hozzáadás</button></td>
+            <td colspan="2"><button mat-raised-button color="primary" type="submit">Hozzáadás</button></td>
           </tr>
       </table>
     </form>

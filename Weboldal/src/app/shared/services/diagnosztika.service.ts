@@ -25,7 +25,6 @@ export class DiagnosztikaService {
   }
 
   getById(fogado: string) {
-    //return this.afs.collection<Dia>(this.collectionName).doc(fogado).valueChanges();
     return this.afs.collection<Dia>(this.collectionName, ref => ref.where('fogado', '==', fogado)).valueChanges();
   }
 

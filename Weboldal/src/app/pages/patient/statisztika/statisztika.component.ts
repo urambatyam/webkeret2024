@@ -151,8 +151,6 @@ export class StatisztikaComponent implements OnInit {
       if (ctx) {
         new Chart(ctx, this.config1);
       }
-    }else{
-      console.error("Nem sikerült létre hozni a diagramot")
     }
     const canvas2 = document.getElementById('DisztolesDiagram') as HTMLCanvasElement;
     if (canvas2) {
@@ -160,8 +158,6 @@ export class StatisztikaComponent implements OnInit {
       if (ctx) {
         new Chart(ctx, this.config2);
       }
-    }else{
-      console.error("Nem sikerült létre hozni a diagramot")
     }
   }
 }

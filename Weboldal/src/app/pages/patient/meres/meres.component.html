@@ -16,7 +16,7 @@
           <tr *ngFor="let patient of patients; let i = index;" [ngClass]="i % 2 === 0 ? 'paros' : 'paratlan'">
             <td>{{ patient.disztoles }}</td>
             <td>{{ patient.szisztoles }}</td>
-            <td>{{ patient.date |cso }}</td>
+            <td>{{ patient.date | cso }}</td>
             <td>
               <button mat-fab (click)="torol(patient.id)">
                 <mat-icon color="primary" >cancel</mat-icon>

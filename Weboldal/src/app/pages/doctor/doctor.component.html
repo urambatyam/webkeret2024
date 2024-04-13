@@ -1,13 +1,13 @@
-<div>
-    <div id="e">
+<div id="co">
+    <div >
         <h2>Páciensek</h2>
         <app-lista (idChanged)="onIdChanged($event)"></app-lista>
     </div>
-    <div id="m">
+    <div >
         <h2>Részletek</h2>
         <app-reszletek [input]="meresek"></app-reszletek>
     </div>
-    <div id="h">
+    <div >
         <h2>Diagnosztika irasa</h2>
         <app-tanacs [id]="selectedId"></app-tanacs>
     </div>
