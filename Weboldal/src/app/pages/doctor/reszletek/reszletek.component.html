@@ -5,7 +5,7 @@
         <th>Dátum</th>
     </tr>
     <tr *ngIf="!meresek.length">
-        <td colspan="3">Válasz ki egy pácienst!</td>
+        <td colspan="3">Vagy nem választotál ki egy pácienst vgí még nem töltöt fel mérést!</td>
     </tr> 
     <tr *ngFor="let meres of meresek">
         <td>{{meres.szisztoles}}</td>

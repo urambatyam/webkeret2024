@@ -28,6 +28,7 @@ export class MeresComponent {
   patients: Blood[] = [];
   constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { }
   ngOnInit(): void {
+    console.log('alam '+localStorage.getItem('hej'));
     const userData = JSON.parse(localStorage.getItem('user') as string); 
 
     if (userData) {

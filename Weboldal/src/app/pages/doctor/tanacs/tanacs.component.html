@@ -14,16 +14,14 @@
           <tr *ngFor="let uzenet of uzenetek">
             <td>{{ uzenet.text }}</td>
             <td>{{ uzenet.date | cso}}</td>
-            <td>
-              <button (click)="onDelete(uzenet.id)">Törlés</button>
-            </td>
           </tr>
         </tbody>
           <tr *ngIf="bool">
-            <td><textarea formControlName="text" id="" cols="30" rows="10"></textarea></td>
+            <td>
+              <textarea formControlName="text"  placeholder="kedves {{veznev}} {{kernev}}," cols="100%" rows="10">{{'Kedves '+veznev + ' ' + kernev+','}}</textarea>
+            </td>
             <td colspan="2"><button type="submit">Hozzáadás</button></td>
           </tr>
-        
       </table>
     </form>
   </div>

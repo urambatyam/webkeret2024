@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { AuthGuard } from './auth.guard';
+import { OrvosGuard } from './orvose.guard';
 
-describe('authGuard', () => {
+describe('orvoseGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => AuthGuard(...guardParameters));
+      TestBed.runInInjectionContext(() => OrvosGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

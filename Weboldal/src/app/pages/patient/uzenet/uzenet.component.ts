@@ -22,13 +22,21 @@ export class UzenetComponent {
     return formGroup;
   }
   uzenetek: Dia[] = [];
-
   constructor(private fb: FormBuilder, private diaservice: DiagnosztikaService) { }
-
   ngOnInit(): void {
- 
+    this.uzenetek = [];
+    const userData = JSON.parse(localStorage.getItem('user') as string); 
+    if (userData) {
+      const userData = JSON.parse(localStorage.getItem('user') as string); 
+      this.diaservice.getById(userData.uid).subscribe(data => {
+        if (data) {
+          this.uzenetek = data as unknown as Dia[]; 
+        }
+      });
+    } else {
+      console.error('No user data found in localStorage');
+    }
   }
-
   onAdd(): void {
     const userData = JSON.parse(localStorage.getItem('user') as string);
     const ujuzent: Dia = {
@@ -38,8 +46,6 @@ export class UzenetComponent {
       text: this.UzenetForm.get('text')?.value as string,
       date: new Date()
     };
-
-  
     if (this.UzenetForm.valid) {
       console.log(ujuzent);
       this.diaservice.create(ujuzent);
@@ -52,10 +58,7 @@ export class UzenetComponent {
       text: '',
       date: new Date()});
   }
-
   onDelete(id: string): void {
     this.diaservice.delete(id);
   }
-
-
 }

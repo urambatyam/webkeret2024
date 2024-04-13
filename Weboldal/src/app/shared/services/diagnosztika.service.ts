@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Dia } from '../model/diagnosztika';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 
 
 @Injectable({
@@ -24,8 +24,9 @@ export class DiagnosztikaService {
     return this.afs.collection<Dia>(this.collectionName).valueChanges();
   }
 
-  getById(id: string) {
-    return this.afs.collection<Dia>(this.collectionName).doc(id).valueChanges();
+  getById(fogado: string) {
+    //return this.afs.collection<Dia>(this.collectionName).doc(fogado).valueChanges();
+    return this.afs.collection<Dia>(this.collectionName, ref => ref.where('fogado', '==', fogado)).valueChanges();
   }
 
   update(user: Dia) {
@@ -35,4 +36,12 @@ export class DiagnosztikaService {
   delete(id: string) {
     return this.afs.collection<Dia>(this.collectionName).doc(id).delete();
   }
+
+  getAllpast(fogado: string, kuldo: string){
+    return this.afs.collection<Dia>(this.collectionName, ref => 
+        ref.where('fogado', '==', fogado).where('kuldo', '==', kuldo)
+    ).valueChanges();
+}
+
+
 }

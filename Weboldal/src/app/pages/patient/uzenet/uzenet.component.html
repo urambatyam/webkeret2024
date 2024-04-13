@@ -4,7 +4,7 @@
         <thead>
           <tr>
             <th>Orvosi tanács</th>
-            <th colspan="2">Dátum</th>
+            <th>Dátum</th>
           </tr>
         </thead>
         <tr *ngIf="!uzenetek.length">
@@ -14,23 +14,6 @@
           <tr *ngFor="let uzenet of uzenetek">
             <td>{{ uzenet.text }}</td>
             <td>{{ uzenet.date | cso}}</td>
-            <td>
-              <button mat-fab (click)="onDelete(uzenet.id)">
-                <mat-icon color="primary">cancel</mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field>
-                <textarea matInput formControlName="text" id="" cols="30" rows="10"></textarea>
-              </mat-form-field>
-            </td>
-            <td colspan="2">
-              <button mat-fab type="submit">
-                <mat-icon color="primary" >add_circle</mat-icon>
-              </button>
-            </td>
           </tr>
         </tbody>
       </table>
