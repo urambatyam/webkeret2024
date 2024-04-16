@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../model/user';
 import { Observable, map, switchMap } from 'rxjs';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable, map, switchMap } from 'rxjs';
 export class AuthService {
   firestore: any;
 
-  constructor(private auth: AngularFireAuth) {}
+  constructor(private auth: AngularFireAuth, private u: UserService) {}
   Login(email: string, password: string){
     return  this.auth.signInWithEmailAndPassword(email, password)
   }
@@ -19,6 +20,7 @@ export class AuthService {
   }
 
   isUserLoggedIn() {
+    console.log(this.auth)
     return this.auth.user;
   }
   isorvos(): boolean{
@@ -31,6 +33,7 @@ export class AuthService {
   }
 
   logout() {
+    
     return this.auth.signOut();
   }
 

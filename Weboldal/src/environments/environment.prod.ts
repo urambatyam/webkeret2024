@@ -8,6 +8,6 @@ export const environment = {
     authDomain:"webfejlesztes-2024.firebaseapp.com",
     messagingSenderId:"401086229314",
     measurementId:"G-CCYKPJ6P8H"
-},
+}
 
 };

@@ -17,7 +17,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
-
+// firebase login ng bliuld firebase deploy -m "valami" --only hosting
 
 
 

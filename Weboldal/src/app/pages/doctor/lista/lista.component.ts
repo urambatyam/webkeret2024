@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/model/user';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -11,8 +12,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class ListaComponent  implements OnInit {
   @Output() idChanged = new EventEmitter<string>();
   tbs: User[] = [];
-  constructor(private router: Router,private users: UserService){}
+  constructor(private router: Router,private users: UserService, private u:AuthService){}
   ngOnInit(): void {
+    console.log(this.u.getCurrentUserID())
+    
     const userData = JSON.parse(localStorage.getItem('user') as string); 
 
     if (userData) {
