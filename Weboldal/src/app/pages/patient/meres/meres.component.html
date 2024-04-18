@@ -7,11 +7,12 @@
             <th>Szisztoles</th>
             <th>Dátum</th>
             <th>Törlés</th>
+            <th>Szerkesztés</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngIf="!patients.length" class="paros">
-            <td colspan="4"><p>Töls fel adatot!</p></td>
+            <td colspan="5"><p>Töls fel adatot!</p></td>
           </tr>
           <tr *ngFor="let patient of patients; let i = index;" [ngClass]="i % 2 === 0 ? 'paros' : 'paratlan'">
             <td>{{ patient.disztoles }}</td>
@@ -20,6 +21,11 @@
             <td>
               <button mat-fab (click)="torol(patient.id)">
                 <mat-icon color="primary" >cancel</mat-icon>
+              </button>
+            </td>
+            <td>
+              <button mat-fap (click)="openDialog(patient.id)">
+                <mat-icon color="primary" >update</mat-icon>
               </button>
             </td>
           </tr>
@@ -42,7 +48,7 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </td>
-            <td>
+            <td colspan="2">
               <button mat-fab type="submit">
                 <mat-icon color="primary" >add_circle</mat-icon>
               </button>

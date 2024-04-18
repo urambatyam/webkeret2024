@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PatientRoutingModule } from './patient-routing.module';
 import { PatientComponent } from './patient.component';
 import { MeresComponent } from './meres/meres.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UzenetComponent } from './uzenet/uzenet.component';
 import { StatisztikaComponent } from './statisztika/statisztika.component';
 import { KozosModule } from 'src/app/shared/kozos/kozos.module';
@@ -13,7 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { AlertDialogComponent } from './meres/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -24,6 +26,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MeresComponent,
     UzenetComponent,
     StatisztikaComponent,
+    AlertDialogComponent
+
   ],
   imports: [
     ReactiveFormsModule,
@@ -34,7 +38,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule,
-  ]
+    MatDatepickerModule,  
+    MatDialogModule,
+    MatNativeDateModule
+  ],
+  providers: [MatDatepickerModule]
+  
 })
 export class PatientModule { }

@@ -4,6 +4,9 @@ import { Blood } from 'src/app/shared/model/blood';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { BloodService } from 'src/app/shared/services/blood.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from './dialog.component'; // Előzetesen létrehozott dialog komponens
+
 
 @Component({
   selector: 'app-meres',
@@ -24,6 +27,7 @@ export class MeresComponent {
     szisztoles: 0,
     date: new Date()
   })
+  
   createForm(model: Blood){
     let formGroup = this.fb.group(model);
     formGroup.get("disztoles")?.addValidators([Validators.required,Validators.min(0),Validators.max(300)])
@@ -32,7 +36,7 @@ export class MeresComponent {
   }
   userData = JSON.parse(localStorage.getItem('user') as string);
   patients: Blood[] = [];
-  constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService) { }
+  constructor(private fb: FormBuilder, private bl: BloodService, private bloodservice: BloodService, private dialog: MatDialog,) { }
   ngOnInit(): void {
     const userData = JSON.parse(localStorage.getItem('user') as string); 
 
@@ -50,9 +54,25 @@ export class MeresComponent {
       }
     }
   torol(bloodid: string){
+    console.log("torol "+bloodid)
     this.bloodservice.delete(this.userData.uid,bloodid);
+    const index = this.patients.findIndex(blood => blood.id === bloodid);
+    if (index !== -1) {
+      this.patients.splice(index, 1);
+    }
+
   }
   update(id:string){
     this.bloodservice.update(this.userData.uid,id,this.updateFrom.value as Blood);
   }
+  openDialog(id: string): void {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: { id: id }
+    });
+  
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+  }
+  
   }

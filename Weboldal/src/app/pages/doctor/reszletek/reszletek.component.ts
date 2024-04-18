@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 import { Blood } from 'src/app/shared/model/blood';
 import { BloodService } from 'src/app/shared/services/blood.service';
@@ -8,11 +8,14 @@ import { BloodService } from 'src/app/shared/services/blood.service';
   templateUrl: './reszletek.component.html',
   styleUrl: './reszletek.component.sass'
 })
-export class ReszletekComponent implements OnChanges{
+export class ReszletekComponent implements OnChanges, OnDestroy{
   @Input() input: Blood[] | null = null;;
   
   meresek: Blood[] = [];
   constructor( private bl: BloodService){}
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['input'] && changes['input'].currentValue) {
