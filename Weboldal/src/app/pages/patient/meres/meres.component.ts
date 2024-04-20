@@ -64,6 +64,11 @@ export class MeresComponent {
   }
   update(id:string){
     this.bloodservice.update(this.userData.uid,id,this.updateFrom.value as Blood);
+    const index = this.patients.findIndex(blood => blood.id === id);
+    this.updateFrom.value.id = id;
+    this.patients[index] = this.updateFrom.value as Blood;
+    console.log("vadfafdhjhj "+this.patients[index]);
+
   }
   openDialog(id: string): void {
     const dialogRef = this.dialog.open(AlertDialogComponent, {

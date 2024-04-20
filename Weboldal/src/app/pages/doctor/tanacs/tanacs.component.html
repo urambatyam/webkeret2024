@@ -7,11 +7,11 @@
             <th colspan="2">Dátum</th>
           </tr>
         </thead>
-        <tr *ngIf="!uzenetek.length">
+        <tr *ngIf="!uzenetek.length" class="paros">
           <td colspan="3"><p>Nem válaszottál pácienst vagy ennek a pacinsnek még ne írtál tanácsot</p></td>
         </tr>
         <tbody *ngIf="uzenetek.length">
-          <tr *ngFor="let uzenet of uzenetek">
+          <tr *ngFor="let uzenet of uzenetek; let i = index;" [ngClass]="i % 2 === 0 ? 'paros' : 'paratlan'">
             <td>{{ uzenet.text }}</td>
             <td>{{ uzenet.date | cso}}</td>
           </tr>

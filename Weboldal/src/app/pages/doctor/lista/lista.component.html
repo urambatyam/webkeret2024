@@ -8,10 +8,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngIf="!tbs.length">
+            <tr *ngIf="!tbs.length" class="paros">
                 <td colspan="2">Úgytünik nicsenek betegek</td>
             </tr>
-            <tr *ngFor="let tb of tbs;">
+            <tr *ngFor="let tb of tbs; let i = index;" [ngClass]="i % 2 === 0 ? 'paros' : 'paratlan'">
                 <td>{{tb.tb}}</td>
                 <td>{{tb.veznev}}</td>
                 <td>{{tb.kernev}}</td>

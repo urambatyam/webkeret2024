@@ -4,10 +4,10 @@
         <th>Disztoles</th>
         <th>Dátum</th>
     </tr>
-    <tr *ngIf="!meresek.length">
+    <tr *ngIf="!meresek.length" class="paros">
         <td colspan="3">Vagy nem választotál ki egy pácienst vgí még nem töltöt fel mérést!</td>
     </tr> 
-    <tr *ngFor="let meres of meresek">
+    <tr *ngFor="let meres of meresek; let i = index;" [ngClass]="i % 2 === 0 ? 'paros' : 'paratlan'">
         <td>{{meres.szisztoles}}</td>
         <td>{{meres.disztoles}}</td>
         <td>{{meres.date | cso}}</td>
