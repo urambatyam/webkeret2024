@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js'; 
 import { BloodService } from 'src/app/shared/services/blood.service';
 import { CsoPipe } from 'src/app/shared/pipes/cso.pipe';
@@ -19,7 +19,9 @@ export class StatisztikaComponent implements OnInit {
     function osszeadas(tomb: number[]): number {
       let osszeg: number = 0;
       for (let elem of tomb) {
-          osszeg += elem;
+          osszeg = +elem + +osszeg;
+          //console.log("osszeg "+osszeg)
+          //console.log("ossze elem "+elem)
       }
       return osszeg;
     }
@@ -32,11 +34,15 @@ export class StatisztikaComponent implements OnInit {
         prer.set(datums[i],[tomb[i]]);
       }
     }
+    console.log("pre2 "+prer2.values)
     let d:string[] = [...prer.keys()];
     for (let i = 0; i < d.length; i++){
       if(prer.get(d[i])?.length as number > 1){
+        //console.log("PRER.get(d[i]) "+prer.get(d[i]))
         let r = osszeadas(prer.get(d[i]) as number[]);
+        //console.log("r "+r)
         r = r/prer.get(d[i]).length;
+        //console.log("r "+r)
         prer.set(d[i],r);
         let r2 = osszeadas(prer2.get(d[i]) as number[]);
         r2 = r2/prer2.get(d[i]).length;
@@ -58,7 +64,7 @@ export class StatisztikaComponent implements OnInit {
   DoptimalMax: number = 80;
   config1: any; 
   config2: any;
-  constructor(private bl: BloodService, private cso: CsoPipe) {}
+  constructor(private bl: BloodService, private cso: CsoPipe, private cd: ChangeDetectorRef) {}
   userData = JSON.parse(localStorage.getItem('user') as string);
   ngOnInit() {
     const userId = this.userData.uid;
@@ -69,10 +75,15 @@ export class StatisztikaComponent implements OnInit {
         this.preDatumlabels.push(this.cso.transform(item.date));
       });
       let tomb = this.tisztit(this.preSziszoltes,this.preDiszoltes,this.preDatumlabels);
+      this.cd.detectChanges();
       this.Datumlabels = tomb.d;
       this.Sziszoltes = tomb.s;
       this.Diszoltes = tomb.dis;
       this.createChart();
+      //console.log("pre datum"+this.preDatumlabels)
+      //console.log("datum "+this.Datumlabels)
+      //console.log("pre "+this.preDiszoltes)
+      //console.log("disztoles tomb "+this.Diszoltes)
     });
   }
   createChart() {
